@@ -74,6 +74,14 @@ const TopicMessageCountChart = () => {
         hAxis: {
           title: "Time",
           format: "HH:mm",
+          gridlines: {
+            color: "transparent",
+          },
+        },
+        vAxis: {
+          gridlines: {
+            color: "transparent",
+          },
         },
         series: {
           0: { color: "#FFC300" },
