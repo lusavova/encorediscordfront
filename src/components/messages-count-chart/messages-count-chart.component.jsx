@@ -52,9 +52,24 @@ const MessagesCountChart = () => {
       data={formatChartData()}
       options={{
         title: "Activity",
+        titleTextStyle: {
+          color: "black",
+          fontSize: 24,
+        },
         hAxis: {
           title: "Time",
           format: "HH:mm",
+          gridlines: {
+            color: "transparent",
+          },
+        },
+        vAxis: {
+          gridlines: {
+            color: "transparent",
+          },
+        },
+        series: {
+          0: { label: "Total Messages" },
         },
         fontName: "Inter",
       }}
