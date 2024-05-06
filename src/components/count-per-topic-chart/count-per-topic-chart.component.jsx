@@ -67,12 +67,13 @@ const TopicMessageCountChart = () => {
       data={topicCountData}
       options={{
         title: "Activity per Topic",
+        titleTextStyle: {
+          color: "black",
+          fontSize: 24,
+        },
         hAxis: {
           title: "Time",
           format: "HH:mm",
-        },
-        vAxis: {
-          title: "Count",
         },
         series: {
           0: { color: "#FFC300" },
