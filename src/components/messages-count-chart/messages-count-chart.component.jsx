@@ -35,7 +35,6 @@ const MessagesCountChart = () => {
   };
 
   const formatChartData = () => {
-    debugger;
     const chartData = [["Time", "Count"]];
     messageCounts.forEach((count) => {
       chartData.push([new Date(count.timestamp), count.count]);
@@ -45,7 +44,7 @@ const MessagesCountChart = () => {
 
   return (
     <Chart
-      width={"100%"}
+      width={"1600px"}
       height={"400px"}
       chartType="LineChart"
       loader={<div>Loading Count Messages Chart</div>}

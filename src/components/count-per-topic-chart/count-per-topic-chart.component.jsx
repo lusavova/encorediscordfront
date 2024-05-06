@@ -60,7 +60,7 @@ const TopicMessageCountChart = () => {
 
   return (
     <Chart
-      width={"100%"}
+      width={"1600px"}
       height={"400px"}
       chartType="LineChart"
       loader={<div>Loading Message Counts Chart...</div>}
