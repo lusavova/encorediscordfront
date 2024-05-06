@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Chart } from "react-google-charts";
 
 const TopicMessageCountChart = () => {
@@ -6,11 +6,7 @@ const TopicMessageCountChart = () => {
     ["Time", "Bug Report", "Feature Request", "Feedback", "Other", "Question"],
   ]);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       const response = await fetch(
         "https://staging-encorediscord-tmii.encr.app/get-message-counts-per-topic",
@@ -19,9 +15,7 @@ const TopicMessageCountChart = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            hours: 12,
-          }),
+          body: JSON.stringify({ hours: 12 }),
         }
       );
 
@@ -34,7 +28,11 @@ const TopicMessageCountChart = () => {
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   const transformData = (data) => {
     const headers = [
@@ -60,8 +58,6 @@ const TopicMessageCountChart = () => {
     setTopicCountData(newData);
   };
 
-  console.log("DEBUG", topicCountData);
-
   return (
     <Chart
       width={"100%"}
@@ -71,21 +67,12 @@ const TopicMessageCountChart = () => {
       data={topicCountData}
       options={{
         title: "Activity per Topic",
-        titleTextStyle: {
-          color: "black",
-          fontSize: 24,
-        },
         hAxis: {
           title: "Time",
           format: "HH:mm",
-          gridlines: {
-            color: "transparent",
-          },
         },
         vAxis: {
-          gridlines: {
-            color: "transparent",
-          },
+          title: "Count",
         },
         series: {
           0: { color: "#FFC300" },
